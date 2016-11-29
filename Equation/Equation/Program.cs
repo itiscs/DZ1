@@ -55,6 +55,11 @@ namespace Equation
             else if(countSol == 0)
                 Console.WriteLine("Нет решения");
         }
+
+        public override string ToString()
+        {
+            return String.Format($"{c}=0");
+        }
     }
     public class Equation1 : Equation0
     {
@@ -74,6 +79,10 @@ namespace Equation
         public override void PrintSolution()
         {
             Console.WriteLine($"x = {x1}");
+        }
+        public override string ToString()
+        {
+            return String.Format($"{b} x + {c} = 0");
         }
     }
     public class Equation2 : Equation1
@@ -106,6 +115,11 @@ namespace Equation
             else
                 Console.WriteLine($"x1 = {x1}   x2 = {x2}");
         }
+
+        public override string ToString()
+        {
+            return String.Format($"{a} x^2 + {b} x + {c} = 0");
+        }
     }
 
 
@@ -113,9 +127,15 @@ namespace Equation
     {
         static void Main(string[] args)
         {
-            Equation e = Equation.CreateEquation(1,0,-4);
-            e.Solve();
-            e.PrintSolution();
+
+            Equation[] e = new Equation[5];
+            for (int i = 0; i < 5; i++)
+            {
+                e[i] = Equation.CreateEquation(i / 3, i / 2, -i);
+                Console.WriteLine(e[i]);
+                e[i].Solve();
+                e[i].PrintSolution();
+            }
         }
     }
 }
